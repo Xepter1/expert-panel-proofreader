@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  expert-proofreader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: expert-panel-proofreader:latest
+    container_name: expert_panel_proofreader
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-} # Can be set in environment or directly in the GUI dashboard
+    volumes:
+      # Persist uploaded papers and source reference libraries across restarts/updates
+      - ./backend/uploads:/app/backend/uploads
