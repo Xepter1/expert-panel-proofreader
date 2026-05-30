@@ -279,7 +279,7 @@ if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   
   // Serve React App on all non-API paths
-  app.get('(.*)', (req, res, next) => {
+  app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(distPath, 'index.html'));
   });
@@ -288,8 +288,8 @@ if (fs.existsSync(distPath)) {
 }
 
 // Start Server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`==================================================`);
-  console.log(`🚀 Expert Panel Backend active on http://localhost:${PORT}`);
+  console.log(`🚀 Expert Panel Backend active on http://0.0.0.0:${PORT}`);
   console.log(`==================================================`);
 });
