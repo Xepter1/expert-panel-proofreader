@@ -279,7 +279,7 @@ if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   
   // Serve React App on all non-API paths
-  app.get('*', (req, res, next) => {
+  app.get('(.*)', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(distPath, 'index.html'));
   });
