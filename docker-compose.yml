@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: expert-panel-proofreader:latest
     container_name: expert_panel_proofreader
     restart: unless-stopped
     ports:
